@@ -94,8 +94,16 @@
             font-size: 13px;
         }
 
+        .field-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
         /* INPUT & SELECT */
-        .custom-select, .custom-input, .custom-textarea {
+        .custom-select, .custom-textarea {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #cbd5e1;
@@ -106,26 +114,18 @@
             background-color: #fff;
         }
 
-        .custom-select:focus, .custom-input:focus, .custom-textarea:focus {
+        .custom-select:focus, .custom-textarea:focus {
             border-color: #7c3aed;
         }
 
-        .input-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .input-row .custom-input {
-            flex: 1;
-        }
-
-        .note-text {
-            font-size: 12px;
-            color: #ef4444;
-            margin-top: 6px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .info-box {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
         }
 
         .custom-textarea {
@@ -170,12 +170,6 @@
         .btn-submit:hover {
             background-color: #16a34a;
         }
-
-        @media (max-width: 600px) {
-            .input-row {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
@@ -198,28 +192,24 @@
                         <option value="" disabled selected>Tìm và chọn gói dịch vụ cần thuê...</option>
                         <option value="1">FIREFLY (ĐỐM ĐỐM) 🦊 - 1 CON - 16,000 đ</option>
                         <option value="2">🐉 BLACK DRAGON 🐉 - 1 CON - 800,000 đ</option>
-                        <option value="3">CHÓ RACCOON 🦝 - 1 CON - 40,000 đ</option>
+                        <option value="3"> RACCOON 🦝 - 1 CON - 40,000 đ</option>
                         <option value="4">VẸT ROBIN 🦜 - 1 CON - 1,000 đ</option>
                         <option value="5">KHỈ MONKEY - 1 CON - 5,000 đ</option>
                         <option value="6">GẤU BEAR 🐻 - 1 CON - 16,000 đ</option>
                         <option value="7">CHUỒN CHUỒN DRAGONFLY 🦎 - 10 CON - 16,000 đ</option>
                         <option value="8">KỲ LÂN UNICORN 🦄 - 10 CON - 16,000 đ</option>
-                        <option value="9">HỒNG BĂNG SERPENT 🐍 - 1 CON - 1,200,000 đ</option>
+                        <option value="9">RỒNG BĂNG SERPENT 🐍 - 1 CON - 1,200,000 đ</option>
                     </select>
                 </div>
 
-                <!-- BƯỚC 2: THÔNG TIN TÀI KHOẢN -->
+                <!-- BƯỚC 2: XÁC NHẬN ĐẶT HÀNG -->
                 <div class="form-group">
                     <div class="step-title">
                         <span class="step-num">2</span>
-                        <span>Thông Tin Tài Khoản</span>
+                        <span>Xác Nhận Đặt Hàng</span>
                     </div>
-                    <div class="input-row">
-                        <input type="text" class="custom-input" placeholder="Nhập tài khoản của bạn" required>
-                        <input type="password" class="custom-input" placeholder="Nhập mật khẩu của tài khoản đó" required>
-                    </div>
-                    <div class="note-text">
-                        ⚠️ Có thể nhập chuỗi 2FA, link game pass hoặc cookie liên quan. Nếu hay bị văng/thiếu bí mật, sẽ hỗ trợ riêng.
+                    <div class="info-box">
+                        📌 Quý khách vui lòng kiểm tra kỹ gói cày thuê đã chọn trước khi tạo đơn hàng. Sau khi tạo đơn, liên hệ Admin để được hỗ trợ xử lý nhanh nhất.
                     </div>
                 </div>
 
@@ -229,6 +219,7 @@
                         <span class="step-num">3</span>
                         <span>Ghi Chú & Xác Nhận</span>
                     </div>
+                    <label class="field-label">Ghi Chú</label>
                     <textarea class="custom-textarea" maxlength="500" placeholder="Nhập ghi chú cho admin nếu có..."></textarea>
                     <div class="char-count">0 / 500</div>
                 </div>
