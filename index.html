@@ -180,7 +180,8 @@
         <p class="sub-notice">Điền đúng thông tin cần thiết hoặc liên hệ Admin | Cuối trang | Để hoàn thành đơn</p>
 
         <div class="form-card">
-            <form action="#" method="POST">
+            <!-- Thêm id="petOrderForm" để lắng nghe sự kiện bấm nút -->
+            <form id="petOrderForm">
                 
                 <!-- BƯỚC 1: CHỌN GÓI CẦN THUÊ -->
                 <div class="form-group">
@@ -188,17 +189,18 @@
                         <span class="step-num">1</span>
                         <span>Chọn Gói Cần Thuê</span>
                     </div>
-                    <select class="custom-select" required>
+                    <!-- Thêm id="petSelect" -->
+                    <select id="petSelect" class="custom-select" required>
                         <option value="" disabled selected>Tìm và chọn gói dịch vụ cần thuê...</option>
-                        <option value="1">FIREFLY (ĐỐM ĐỐM) 🦊 - 1 CON - 16,000 đ</option>
-                        <option value="2">🐉 BLACK DRAGON 🐉 - 1 CON - 800,000 đ</option>
-                        <option value="3"> RACCOON 🦝 - 1 CON - 40,000 đ</option>
-                        <option value="4">VẸT ROBIN 🦜 - 1 CON - 1,000 đ</option>
-                        <option value="5">KHỈ MONKEY - 1 CON - 5,000 đ</option>
-                        <option value="6">GẤU BEAR 🐻 - 1 CON - 16,000 đ</option>
-                        <option value="7">CHUỒN CHUỒN DRAGONFLY 🦎 - 10 CON - 16,000 đ</option>
-                        <option value="8">KỲ LÂN UNICORN 🦄 - 10 CON - 16,000 đ</option>
-                        <option value="9">RỒNG BĂNG SERPENT 🐍 - 1 CON - 1,200,000 đ</option>
+                        <option value="FIREFLY (ĐỐM ĐỐM) 🦊 - 1 CON - 16,000 đ">FIREFLY (ĐỐM ĐỐM) 🦊 - 1 CON - 16,000 đ</option>
+                        <option value="🐉 BLACK DRAGON 🐉 - 1 CON - 800,000 đ">🐉 BLACK DRAGON 🐉 - 1 CON - 800,000 đ</option>
+                        <option value="RACCOON 🦝 - 1 CON - 40,000 đ"> RACCOON 🦝 - 1 CON - 40,000 đ</option>
+                        <option value="VẸT ROBIN 🦜 - 1 CON - 1,000 đ">VẸT ROBIN 🦜 - 1 CON - 1,000 đ</option>
+                        <option value="KHỈ MONKEY - 1 CON - 5,000 đ">KHỈ MONKEY - 1 CON - 5,000 đ</option>
+                        <option value="GẤU BEAR 🐻 - 1 CON - 16,000 đ">GẤU BEAR 🐻 - 1 CON - 16,000 đ</option>
+                        <option value="CHUỒN CHUỒN DRAGONFLY 🦎 - 10 CON - 16,000 đ">CHUỒN CHUỒN DRAGONFLY 🦎 - 10 CON - 16,000 đ</option>
+                        <option value="KỲ LÂN UNICORN 🦄 - 10 CON - 16,000 đ">KỲ LÂN UNICORN 🦄 - 10 CON - 16,000 đ</option>
+                        <option value="RỒNG BĂNG SERPENT 🐍 - 1 CON - 1,200,000 đ">RỒNG BĂNG SERPENT 🐍 - 1 CON - 1,200,000 đ</option>
                     </select>
                 </div>
 
@@ -220,8 +222,9 @@
                         <span>Ghi Chú & Xác Nhận</span>
                     </div>
                     <label class="field-label">Ghi Chú</label>
-                    <textarea class="custom-textarea" maxlength="500" placeholder="Nhập ghi chú cho admin nếu có..."></textarea>
-                    <div class="char-count">0 / 500</div>
+                    <!-- Thêm id="noteArea" -->
+                    <textarea id="noteArea" class="custom-textarea" maxlength="500" placeholder="Nhập ghi chú cho admin nếu có..."></textarea>
+                    <div class="char-count"><span id="charCountDisplay">0</span> / 500</div>
                 </div>
 
                 <!-- NÚT TẠO ĐƠN HÀNG -->
@@ -237,5 +240,34 @@
 
     </div>
 
+    <!-- SCRIPT XỬ LÝ SỰ KIỆN TẠO ĐƠN VÀ CHUYỂN HƯỚNG LINK -->
+    <script>
+        // Cập nhật số ký tự đếm được trong ô Ghi chú
+        const noteArea = document.getElementById('noteArea');
+        const charCountDisplay = document.getElementById('charCountDisplay');
+        
+        if (noteArea) {
+            noteArea.addEventListener('input', function () {
+                charCountDisplay.textContent = this.value.length;
+            });
+        }
+
+        // Xử lý sự kiện gửi Form
+        document.getElementById('petOrderForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Ngăn trang reload lại
+
+            const selectedPackage = document.getElementById('petSelect').value;
+
+            if (selectedPackage) {
+                // Hiển thị thông báo xác nhận đơn hàng
+                alert("✅ Đã tạo đơn hàng thành công cho gói:\n" + selectedPackage + "\n\nHệ thống sẽ chuyển hướng ngay bây giờ!");
+                
+                // === THAY ĐỔI ĐƯỜNG LINK CỦA BẠN VÀO BÊN DƯỚI ===
+                window.location.href = "https://zalo.me"; 
+            } else {
+                alert("⚠️ Vui lòng chọn gói cày thuê Pet trước!");
+            }
+        });
+    </script>
 </body>
 </html>
